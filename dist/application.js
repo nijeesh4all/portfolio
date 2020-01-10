@@ -1,0 +1,1 @@
+let pageLoaded=!1;window.onload=function(){pageLoaded=!0};const setPreloaderTimeout=()=>{setTimeout(()=>{pageLoaded?document.getElementById("preloader").style.display="none":setPreloaderTimeout()},300)};setPreloaderTimeout();
