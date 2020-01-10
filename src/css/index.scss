@@ -3,6 +3,7 @@ $gradient-first: #6d748c;
 $gradient-second: #9ba9e3;
 $header-background: #374458;
 $primary: #4f90cd;
+$secondary: #2b343f;
 $text-light: white;
 
 body {
@@ -86,6 +87,21 @@ header.header {
         margin: 10px auto;
         display: block;
       }
+    }
+  }
+}
+
+.contact-header{
+  background-color: $secondary;
+  .contact-link{
+    color: $text-light;
+    font-size: 16px;
+    text-decoration: none;
+
+    svg{
+      width: 16px;
+      vertical-align: middle;
+      margin-right: 5px;
     }
   }
 }
