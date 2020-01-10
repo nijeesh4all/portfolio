@@ -1,4 +1,4 @@
-$background-color: #c4c4c4;
+$background-color: #e3e6ec;
 $gradient-first: #6d748c;
 $gradient-second: #9ba9e3;
 $header-background: #374458;
@@ -38,10 +38,19 @@ header.header {
     background-color: $header-background;
     height: auto;
     line-height: 1.5;
+    .header-content{
+        align-self: center;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .header-text{
+        margin: 0;
+    }
+
     .header-name{
         font-size: 40px;
         color: $text-light;
-        margin-top: 20px;
     }
 
     .header-title{
@@ -53,16 +62,33 @@ header.header {
         color:$text-light;
         font-size: 15px;
     }
-
-    .profile-image {
-        width: 160px;
+    .profile-image-border{
         border-radius: 50%;
-        margin: 10px;
         border-color: $primary;
-        border-width: 5px;
+        border-width: 6px;
         border-style: solid;
-        img {
+        margin: 10px;
+        width: min-content;
+        height: min-content;
+        .profile-image {
+            width: 160px;
+            align-self: center;
             filter: grayscale(100%);
+            border-radius: 50%;
+        }
+}
+
+
+    @media (max-width: 768px) {
+        .header-content-container{
+            order: 1;
+        }
+        .profile-image-continer{
+            order: 0;
+            .profile-image{
+                margin: 10px auto;
+                display: block;
+            }
         }
     }
 }
