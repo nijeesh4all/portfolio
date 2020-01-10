@@ -4,7 +4,9 @@
   "description": "nijessh joshy's portfolio",
   "main": "''",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "grunt build",
+    "dist": "grunt dist",
+    "deploy": "grunt dist && firebase deploy"
   },
   "author": "Nijeesh Joshy",
   "license": "MIT",
