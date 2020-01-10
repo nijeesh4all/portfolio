@@ -1,5 +1,13 @@
+$background-color: #c4c4c4;
+$gradient-first: #6d748c;
+$gradient-second: #9ba9e3;
+$header-background: #374458;
+$primary: #4F90CD;
+$text-light: white;
+
 body {
-    background-color: #e6e6e6;
+    background-color: $background-color;
+    font-family: 'Hind', sans-serif;
 }
 
 .hidden{
@@ -12,7 +20,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    background: linear-gradient(354deg, #6d748c, #9ba9e3);
+    background: linear-gradient(354deg, $gradient-first, $gradient-second);
     background-size: 400% 400%;
     animation: gradient-loader 4s ease infinite;
     z-index: 10;
@@ -27,15 +35,34 @@ body {
 }
 
 header.header {
-    background-color: #374458;
+    background-color: $header-background;
     height: auto;
-}
+    line-height: 1.5;
+    .header-name{
+        font-size: 40px;
+        color: $text-light;
+        margin-top: 20px;
+    }
 
-.profile-image {
+    .header-title{
+        color: $primary;
+        font-size: 20px;
+    }
 
-    width: 160px;
-    border-radius: 50%;
-    filter: grayscale(100%);
-    padding: 10px;
+    .header-description{
+        color:$text-light;
+        font-size: 15px;
+    }
 
+    .profile-image {
+        width: 160px;
+        border-radius: 50%;
+        margin: 10px;
+        border-color: $primary;
+        border-width: 5px;
+        border-style: solid;
+        img {
+            filter: grayscale(100%);
+        }
+    }
 }

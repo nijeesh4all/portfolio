@@ -9,7 +9,7 @@ const setPreloaderTimeout = ()=> {
             document.getElementById('preloader').style.display = 'none';
         else 
             setPreloaderTimeout()
-    }, 100)
+    }, 300)
 }
 
 setPreloaderTimeout()
