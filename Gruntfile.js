@@ -104,6 +104,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-uncss');
+    grunt.loadNpmTasks('grunt-contrib-uglify-es');
 
     grunt.registerTask('copy-all', ['copy:main']);
     grunt.registerTask('copy-dist', ['copy:dist']);
@@ -111,7 +112,7 @@ module.exports = function (grunt) {
     grunt.registerTask(
         'build',
         'Compiles all of the assets and copies the files to the build directory.',
-        ['clean:build', 'copy-all', 'stylesheets']
+        ['clean:build', 'copy-all', 'uglify', 'stylesheets']
     );
 
     grunt.registerTask(
