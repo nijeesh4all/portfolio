@@ -1,0 +1,22 @@
+body {
+    background-color: #e6e6e6;
+}
+.container {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12),
+        0 2px 2px rgba(0, 0, 0, 0.12),
+        0 4px 4px rgba(97, 92, 92, 0.12),
+        0 8px 8px rgba(0, 0, 0, 0.12),
+        0 16px 16px rgba(0, 0, 0, 0.12);
+}
+header.header {
+    background-color: #374458;
+    height: auto;
+}
+.profile-image {
+
+    width: 160px;
+    border-radius: 50%;
+    filter: grayscale(100%);
+    padding: 10px;
+
+}
