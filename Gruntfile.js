@@ -57,6 +57,26 @@ module.exports = function (grunt) {
             }
         },
 
+        uncss: {
+            dist: {
+                
+                files: [
+                    { src: 'build/index.html', dest: 'build/application.css' }
+                ]
+            }
+        },
+
+        uglify: {
+            build: {
+              options: {
+                mangle: false
+              },
+              files: {
+                'build/application.js': [ 'build/javascript/*.js' ]
+              }
+            }
+          },
+
         connect: {
             server: {
                 options: {
@@ -83,6 +103,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-autoprefixer');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-uncss');
 
     grunt.registerTask('copy-all', ['copy:main']);
     grunt.registerTask('copy-dist', ['copy:dist']);
@@ -96,7 +117,7 @@ module.exports = function (grunt) {
     grunt.registerTask(
         'stylesheets',
         'Compiles the stylesheets.',
-        ['sass', 'autoprefixer', 'cssmin']
+        ['sass', 'autoprefixer', 'cssmin' , 'uncss']
     );
 
     grunt.registerTask('dist',
