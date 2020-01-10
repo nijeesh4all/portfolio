@@ -1,131 +1,149 @@
-module.exports = function (grunt) {
-    grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
+module.exports = function(grunt) {
+  grunt.initConfig({
+    pkg: grunt.file.readJSON("package.json"),
 
-        copy: {
-            main: {
-                cwd: 'src',
-                src: ['**', '!**/*.scss'],
-                dest: 'build',
-                expand: true
-            },
-            dist: {
-                files: [{
-                    cwd: 'build/',
-                    src: ['**', "!css/**"],
-                    dest: 'dist/',
-                    expand: true
-                }],
-            }
+    copy: {
+      main: {
+        cwd: "src",
+        src: ["**", "!**/*.scss", "!images/*.{png,jpg,gif}"],
+        dest: "build",
+        expand: true
+      },
+      dist: {
+        files: [
+          {
+            cwd: "build/",
+            src: ["**", "!css/**", "!javascript/**"],
+            dest: "dist/",
+            expand: true
+          }
+        ]
+      }
+    },
+
+    clean: {
+      build: {
+        src: ["build"]
+      },
+      dist: {
+        src: ["dist"]
+      }
+    },
+
+    sass: {
+      dist: {
+        files: [
+          {
+            expand: true,
+            cwd: "src/css",
+            src: ["*.scss"],
+            dest: "build/css/",
+            ext: ".css"
+          }
+        ]
+      }
+    },
+
+    autoprefixer: {
+      build: {
+        expand: true,
+        cwd: "build",
+        src: ["**/*.css", "!**/*.min.css"],
+        dest: "build"
+      }
+    },
+
+    cssmin: {
+      build: {
+        files: {
+          "build/application.css": ["build/**/*.css"]
+        }
+      }
+    },
+
+    uncss: {
+      dist: {
+        files: [{ src: "build/index.html", dest: "build/application.css" }]
+      }
+    },
+
+    uglify: {
+      build: {
+        options: {
+          mangle: false
         },
+        files: {
+          "build/application.js": ["build/javascript/*.js"]
+        }
+      }
+    },
 
-        clean: {
-            build: {
-                src: ['build']
-            },
-            dist: {
-                src: ['dist']
-            }
+    cwebp: {
+      dynamic: {
+        options: {
+          q: 50
         },
+        files: [
+          {
+            expand: true,
+            cwd: "src",
+            src: ["images/*.{png,jpg,gif}"],
+            dest: "build/"
+          }
+        ]
+      }
+    },
 
-        sass: {
-            dist: {
-                files: [{
-                    expand: true,
-                    cwd: 'src/css',
-                    src: ['*.scss'],
-                    dest: 'build/css/',
-                    ext: '.css'
-                }]
-            }
-        },
+    connect: {
+      server: {
+        options: {
+          port: 4000,
+          base: "build",
+          hostname: "*"
+        }
+      }
+    },
 
-        autoprefixer: {
-            build: {
-                expand: true,
-                cwd: 'build',
-                src: ['**/*.css', "!**/*.min.css"],
-                dest: 'build'
-            }
-        },
+    watch: {
+      css: {
+        files: "src/**",
+        tasks: ["build"]
+      }
+    }
+  });
 
-        cssmin: {
-            build: {
-                files: {
-                    'build/application.css': ['build/**/*.css']
-                }
-            }
-        },
+  grunt.loadNpmTasks("grunt-contrib-sass");
+  grunt.loadNpmTasks("grunt-contrib-watch");
+  grunt.loadNpmTasks("grunt-contrib-clean");
+  grunt.loadNpmTasks("grunt-contrib-copy");
+  grunt.loadNpmTasks("grunt-autoprefixer");
+  grunt.loadNpmTasks("grunt-contrib-cssmin");
+  grunt.loadNpmTasks("grunt-contrib-connect");
+  grunt.loadNpmTasks("grunt-uncss");
+  grunt.loadNpmTasks("grunt-contrib-uglify-es");
+  grunt.loadNpmTasks("grunt-cwebp");
 
-        uncss: {
-            dist: {
-                
-                files: [
-                    { src: 'build/index.html', dest: 'build/application.css' }
-                ]
-            }
-        },
+  grunt.registerTask("copy-all", ["copy:main"]);
+  grunt.registerTask("copy-dist", ["copy:dist"]);
 
-        uglify: {
-            build: {
-              options: {
-                mangle: false
-              },
-              files: {
-                'build/application.js': [ 'build/javascript/*.js' ]
-              }
-            }
-          },
+  grunt.registerTask(
+    "build",
+    "Compiles all of the assets and copies the files to the build directory.",
+    ["clean:build", "copy-all", "uglify", "stylesheets", "cwebp"]
+  );
 
-        connect: {
-            server: {
-                options: {
-                    port: 4000,
-                    base: 'build',
-                    hostname: '*'
-                }
-            }
-        },
+  grunt.registerTask("stylesheets", "Compiles the stylesheets.", [
+    "sass",
+    "autoprefixer",
+    "cssmin",
+    "uncss"
+  ]);
 
-        watch: {
-            css: {
-                files: 'src/**',
-                tasks: ['build']
-            }
-        },
+  grunt.registerTask(
+    "dist",
+    "Compiles all of the assets and copies the files to the build directory and copy all the necessory code to dist",
+    ["build", "clean:dist", "copy-dist"]
+  );
 
-    });
-
-    grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-autoprefixer');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.loadNpmTasks('grunt-contrib-connect');
-    grunt.loadNpmTasks('grunt-uncss');
-    grunt.loadNpmTasks('grunt-contrib-uglify-es');
-
-    grunt.registerTask('copy-all', ['copy:main']);
-    grunt.registerTask('copy-dist', ['copy:dist']);
-
-    grunt.registerTask(
-        'build',
-        'Compiles all of the assets and copies the files to the build directory.',
-        ['clean:build', 'copy-all', 'uglify', 'stylesheets']
-    );
-
-    grunt.registerTask(
-        'stylesheets',
-        'Compiles the stylesheets.',
-        ['sass', 'autoprefixer', 'cssmin' , 'uncss']
-    );
-
-    grunt.registerTask('dist',
-        'Compiles all of the assets and copies the files to the build directory and copy all the necessory code to dist',
-        ['build', 'clean:dist', 'copy-dist']
-    )
-
-
-    grunt.registerTask('default', ['build' , 'connect', 'watch']);
-}
+  grunt.registerTask("default", ["build", "connect", "watch"]);
+};
