@@ -1,6 +1,23 @@
 body {
     background-color: #e6e6e6;
 }
+
+.hidden{
+    display: none;
+}
+
+.preloader {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(354deg, #6d748c, #9ba9e3);
+    background-size: 400% 400%;
+    animation: gradient-loader 4s ease infinite;
+    z-index: 10;
+}
+
 .container {
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12),
         0 2px 2px rgba(0, 0, 0, 0.12),
@@ -8,10 +25,12 @@ body {
         0 8px 8px rgba(0, 0, 0, 0.12),
         0 16px 16px rgba(0, 0, 0, 0.12);
 }
+
 header.header {
     background-color: #374458;
     height: auto;
 }
+
 .profile-image {
 
     width: 160px;
