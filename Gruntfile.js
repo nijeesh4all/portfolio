@@ -26,7 +26,7 @@ module.exports = function(grunt) {
         src: ["build"]
       },
       dist: {
-        src: ["dist"]
+        src: ["dist/**","!dist/.git/"],  
       }
     },
 
