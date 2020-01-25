@@ -4,13 +4,12 @@
   "description": "nijessh joshy's portfolio",
   "main": "''",
   "scripts": {
-    "build": "grunt build",
-    "dist": "grunt dist",
-    "deploy-firebase": "grunt dist && firebase deploy",
-    "deploy-github-pages": "grunt dist && cd dist && git add . && git commit -m \"deployment\" && git push && cd ../",
-    "deploy": "grunt dist && npm run deploy-firebase && npm run deploy-github-pages"
+    
   },
   "author": "Nijeesh Joshy",
   "license": "MIT",
-  "devDependencies": {}
+  "devDependencies": {
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
 }
