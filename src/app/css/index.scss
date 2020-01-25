@@ -2,7 +2,7 @@ $background-color: #e3e6ec;
 $gradient-first: #6d748c;
 $gradient-second: #9ba9e3;
 $header-background: #374458;
-$primary: #4f90cd;
+$primary: #62b3ff;
 $secondary: #2b343f;
 $text-light: white;
 
@@ -51,6 +51,7 @@ header.header {
     .header-name {
         font-size: 40px;
         color: $text-light;
+        text-decoration: none;
     }
 
     .header-title {
@@ -153,6 +154,7 @@ header.header {
     .gray-sub-text{
         color: $gradient-first;
         font-size: 12px;
+        float: left;
     }
     .bulletpoints{
         color: black;
