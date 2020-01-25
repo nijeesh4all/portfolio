@@ -3,10 +3,11 @@
 
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="application.css">
-	<script src="application.js"></script>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link href="https://fonts.googleapis.com/css?family=Hind:300,700&display=swap" rel="stylesheet">
-	<title>Nijeesh Joshy</title>
+	
+	<!-- Please change title in the webpack config -->
+	<title> <%= htmlWebpackPlugin.options.title %> </title>
 </head>
 
 <body>
@@ -32,7 +33,7 @@
 			</div>
 			<div class="col-lg-3  col-sm-12 col-md-4 profile-image-continer">
 				<div class="profile-image-border">
-					<img src="images/BM_IMG_1577614733227.webp" alt="" srcset="" class="profile-image">
+					<img alt="profile_image" id="profile_image" srcset="" class="profile-image">
 				</div>
 			</div>
 		</header>
@@ -155,7 +156,6 @@
 				</div>
 			</div>
 			<div class="col-md-6 col-sm-12">
-
 			</div>
 			<div class="col-md-6 col-sm-12">
 
