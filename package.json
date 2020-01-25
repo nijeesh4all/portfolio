@@ -6,7 +6,10 @@
   "scripts": {
     "build": "grunt build",
     "dist": "grunt dist",
-    "deploy": "grunt dist && firebase deploy"
+    "deploy-firebase": "grunt dist && firebase deploy",
+    "deploy-github-pages": "grunt dist && cd dist && git add . && git commit -m \"deployment\" && git push && cd ../",
+    "deploy": "grunt dist && npm run deploy-firebase && npm run deploy-github-pages"
+
   },
   "author": "Nijeesh Joshy",
   "license": "MIT",
