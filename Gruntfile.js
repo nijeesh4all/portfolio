@@ -26,7 +26,7 @@ module.exports = function(grunt) {
         src: ["build"]
       },
       dist: {
-        src: ["dist/**","!dist/.git/"],  
+        src: ["dist/**/*","!dist/.git/**","!dist/.gitignore"],  
       }
     },
 
@@ -129,20 +129,18 @@ module.exports = function(grunt) {
   grunt.registerTask(
     "build",
     "Compiles all of the assets and copies the files to the build directory.",
-    ["clean:build", "copy-all", "uglify", "stylesheets", "cwebp"]
+    ["clean:build", "copy-all", "uglify", "stylesheets"]
   );
 
   grunt.registerTask("stylesheets", "Compiles the stylesheets.", [
     "sass",
     "autoprefixer",
-    "cssmin",
-    "uncss"
   ]);
 
   grunt.registerTask(
     "dist",
     "Compiles all of the assets and copies the files to the build directory and copy all the necessory code to dist",
-    ["build", "clean:dist", "copy-dist"]
+    ["build", "cssmin","uncss","uglify", "cwebp","clean:dist", "copy-dist"]
   );
 
   grunt.registerTask("default", ["build", "connect", "watch"]);
