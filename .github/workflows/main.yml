@@ -35,22 +35,3 @@ jobs:
             github_token: ${{ secrets.GITHUB_TOKEN }}
             branch: master
             force: true
-        - name: deploy to github pages commit
-          if: always()
-          run: |
-            export 
-            cd dist
-            git config --global user.email "nijeesh4all@gmail.com"
-            git config --global user.name "Nijeesh Joshy"
-            git init
-            git add --all
-            git commit -m "deploying build from GH actions on $(date +%Y%m%d)"
-        - name: deploy to github pages push
-          if: always()
-          uses: ad-m/github-push-action@master
-          with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            repository: nijeesh4all/nijeesh4all.github.io
-            branch: master
-            force: true
-        
