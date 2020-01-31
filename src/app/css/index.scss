@@ -7,8 +7,16 @@ $secondary: #2b343f;
 $text-light: white;
 
 body {
-    background-color: $background-color;
     font-family: "Hind", sans-serif;
+    background: rgb(174,238,235);
+    background: linear-gradient(135deg, rgba(174,238,235,1) 0%, rgba(66,141,228,1) 52%, rgba(206,148,233,1) 83%); 
+}
+
+.gradient-cover{
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,1) 70%, rgba(162,123,40,0) 100%); 
+    margin: 20px;
+    padding: 5px;
 }
 
 .hidden {
