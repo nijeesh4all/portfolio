@@ -45,4 +45,4 @@ jobs:
             git add --all
             git commit -m "deploying build from GH actions on $(date +%Y%m%d)"
             git remote add origin https://github.com/nijeesh4all/nijeesh4all.github.io
-            git push origin master -m
+            git push origin master
