@@ -9,11 +9,29 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: build a dist
-      run: |
-        npm run build:prod
-        git remote add github "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
-        git pull github ${GITHUB_REF} --ff-only
-        git add ...
-        git commit -m "built dist"
-        git push github HEAD:${GITHUB_REF}
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+      - name: setup node
+        run:  npm install
+      - name: build a dist
+        run: |
+          npm run build:prod
+      - name: init git and configure
+        run: |
+          git remote add github "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
+          git pull github ${GITHUB_REF} --ff-only
+          git config --local user.email "nijeesh4all@gmail.com"
+          git config --local user.name "Nijeesh Joshy"
+      - name: commit files
+        run: |
+          git checkout releases
+          git pull github releases --verbose
+          git commit -am "built dist from GH actions"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: releases
+          force: true
