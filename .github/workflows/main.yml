@@ -47,7 +47,7 @@ jobs:
             git commit -m "deploying build from GH actions on $(date +%Y%m%d)"
         - name: deploy to github pages push
           if: always()
-          uses: ad-m/github-push-action@maste
+          uses: ad-m/github-push-action@master
           with:
             github_token: ${{ secrets.access_token_2 }}
             repository: nijeesh4all/nijeesh4all.github.io
