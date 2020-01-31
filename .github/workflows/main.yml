@@ -19,19 +19,20 @@ jobs:
           git pull github ${GITHUB_REF} --ff-only
           git config --local user.email "nijeesh4all@gmail.com"
           git config --local user.name "Nijeesh Joshy"
-      - name: merge with master
+      - name: pull master
         run: |
-          git checkout github/releases
-          git pull github releases --verbose
-          git merge github/master
+          git checkout master
+          git pull github master --verbose
       - name: setup node
         run:  npm install
       - name: build a dist
         run: npm run build:prod
       - name: commit files
         run: |
+          git stash
           git checkout releases
           git pull github releases --verbose
+          git stash pop
           git commit -am "built dist from GH actions"
       - name: Push changes
         uses: ad-m/github-push-action@master
