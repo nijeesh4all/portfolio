@@ -34,3 +34,10 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: master
           force: true
+      - name: deploy to github pages
+        uses: upcwangying/gitee-pages@v0.0.1
+        with:
+           repo:  https://github.com/nijeesh4all/nijeesh4all.github.io
+           target_branch: master
+           build_dir: dist
+
