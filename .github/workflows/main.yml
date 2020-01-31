@@ -27,13 +27,10 @@ jobs:
         run: npm run build:prod
       - name: commit files
         run: |
-          git stash
-          git checkout releases
-          git stash pop
           git commit -am "built dist from GH actions"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: releases
+          branch: master
           force: true
