@@ -39,6 +39,8 @@ jobs:
           if: always()
           run: |
             cd dist
+            git config --local user.email "nijeesh4all@gmail.com"
+            git config --local user.name "Nijeesh Joshy"
             git init
             git add --all
             git commit -m "deploying build from GH actions on $(date +%Y%m%d)"
