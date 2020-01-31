@@ -49,7 +49,7 @@ jobs:
           if: always()
           uses: ad-m/github-push-action@master
           with:
-            github_token: ${{ secrets.access_token_2 }}
+            github_token: ${{ secrets.GITHUB_TOKEN }}
             repository: nijeesh4all/nijeesh4all.github.io
             branch: master
             force: true
