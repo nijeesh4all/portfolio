@@ -35,7 +35,7 @@ jobs:
             github_token: ${{ secrets.GITHUB_TOKEN }}
             branch: master
             force: true
-        - name: deploy to github pages
+        - name: deploy to github pages commit
           if: always()
           run: |
             export 
@@ -45,7 +45,12 @@ jobs:
             git init
             git add --all
             git commit -m "deploying build from GH actions on $(date +%Y%m%d)"
-            git remote add origin "https://nijeesh4all:${{secrets.GITHUB_TOKEN}}@github.com/nijeesh4all/nijeesh4all.github.io"
-            git push -u origin master
-          
-
+        - name: deploy to github pages push
+          if: always()
+          uses: ad-m/github-push-action@maste
+          with:
+            github_token: ${{ secrets.access_token_2 }}
+            repository: nijeesh4all/nijeesh4all.github.io
+            branch: master
+            force: true
+        
