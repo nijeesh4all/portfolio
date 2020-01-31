@@ -15,14 +15,12 @@ jobs:
           node-version: '10.x'
       - name: init git and configure
         run: |
-          git remote add github "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
-          git pull github ${GITHUB_REF} --ff-only
           git config --local user.email "nijeesh4all@gmail.com"
           git config --local user.name "Nijeesh Joshy"
       - name: pull master
         run: |
           git checkout master
-          git pull github master --verbose
+          git pull
       - name: setup node
         run:  npm install
       - name: build a dist
@@ -31,7 +29,6 @@ jobs:
         run: |
           git stash
           git checkout releases
-          git pull github releases --verbose
           git stash pop
           git commit -am "built dist from GH actions"
       - name: Push changes
