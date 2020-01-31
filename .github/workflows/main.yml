@@ -9,36 +9,29 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '10.x'
-      - name: init git and configure
-        run: |
-          git config --local user.email "nijeesh4all@gmail.com"
-          git config --local user.name "Nijeesh Joshy"
-      - name: pull master
-        run: |
-          git checkout master
-          git pull
-      - name: setup node
-        run:  npm install
-      - name: build a dist
-        run: npm run build:prod
-      - name: commit files
-        run: |
-          git add --all
-          git commit -m "built dist from GH actions on $(date +%Y%m%d)"
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: master
-          force: true
-      - name: deploy to github pages
-        uses: crazy-max/ghaction-github-pages@v1.2.5
-        with:
-           repo:  https://github.com/nijeesh4all/nijeesh4all.github.io
-           target_branch: master
-           build_dir: dist
-
+        - uses: actions/checkout@v1
+        - uses: actions/setup-node@v1
+          with:
+            node-version: '10.x'
+        - name: init git and configure
+          run: |
+            git config --local user.email "nijeesh4all@gmail.com"
+            git config --local user.name "Nijeesh Joshy"
+        - name: pull master
+          run: |
+            git checkout master
+            git pull
+        - name: setup node
+          run:  npm install
+        - name: build a dist
+          run: npm run build:prod
+        - name: commit files
+          run: |
+            git add --all
+            git commit -m "built dist from GH actions on $(date +%Y%m%d)"
+        - name: Push changes
+          uses: ad-m/github-push-action@master
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            branch: master
+            force: true
