@@ -36,6 +36,7 @@ jobs:
             branch: master
             force: true
         - name: deploy to github pages
+          if: always()
           run: |
             cd dist
             git init
