@@ -43,6 +43,8 @@ jobs:
            target_branch: master
            build_dir: dist
            keep_history: true
+           committer_name: Nijeesh Joshy
+           committer_email: nijeesh4all@gmail.com
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
