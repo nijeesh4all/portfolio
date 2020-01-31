@@ -27,10 +27,18 @@ jobs:
         run: npm run build:prod
       - name: commit files
         run: |
-          git commit -am "built dist from GH actions on $(date +%Y%m%d)"
+          git add --all
+          git commit -m "built dist from GH actions on $(date +%Y%m%d)"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: master
           force: true
+      - name: deploy to github pages
+        uses: crazy-max/ghaction-github-pages@v1.2.5
+        with:
+           repo:  https://github.com/nijeesh4all/nijeesh4all.github.io
+           target_branch: master
+           build_dir: dist
+
