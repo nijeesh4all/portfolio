@@ -21,9 +21,9 @@ jobs:
           git config --local user.name "Nijeesh Joshy"
       - name: merge with master
         run: |
-          git checkout releases
+          git checkout github/releases
           git pull github releases --verbose
-          git merge master
+          git merge github/master
       - name: setup node
         run:  npm install
       - name: build a dist
