@@ -38,11 +38,14 @@ jobs:
         - name: deploy to github pages
           if: always()
           run: |
+            export 
             cd dist
             git config --global user.email "nijeesh4all@gmail.com"
             git config --global user.name "Nijeesh Joshy"
             git init
             git add --all
             git commit -m "deploying build from GH actions on $(date +%Y%m%d)"
-            git remote add origin https://github.com/nijeesh4all/nijeesh4all.github.io
-            git push origin master
+            git remote add origin 'https://${{secrets.GITHUB_TOKEN}}@github.com/nijeesh4all/nijeesh4all.github.io.git'
+            git push -u origin master
+          
+
