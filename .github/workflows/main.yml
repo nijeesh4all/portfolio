@@ -13,17 +13,21 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '10.x'
-      - name: setup node
-        run:  npm install
-      - name: build a dist
-        run: |
-          npm run build:prod
       - name: init git and configure
         run: |
           git remote add github "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
           git pull github ${GITHUB_REF} --ff-only
           git config --local user.email "nijeesh4all@gmail.com"
           git config --local user.name "Nijeesh Joshy"
+      - name: merge with master
+        run: |
+          git checkout releases
+          git pull github releases --verbose
+          git merge master
+      - name: setup node
+        run:  npm install
+      - name: build a dist
+        run: npm run build:prod
       - name: commit files
         run: |
           git checkout releases
