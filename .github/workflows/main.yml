@@ -37,8 +37,12 @@ jobs:
           force: true
       - name: deploy to github pages
         uses: crazy-max/ghaction-github-pages@v1.2.5
+        if: always()
         with:
            repo:  https://github.com/nijeesh4all/nijeesh4all.github.io
            target_branch: master
            build_dir: dist
+           keep_history: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
