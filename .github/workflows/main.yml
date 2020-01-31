@@ -27,7 +27,7 @@ jobs:
         run: npm run build:prod
       - name: commit files
         run: |
-          git commit -am "built dist from GH actions"
+          git commit -am "built dist from GH actions on $(date +%Y%m%d)"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
