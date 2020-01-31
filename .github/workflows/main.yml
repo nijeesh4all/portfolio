@@ -1,0 +1,19 @@
+name: CD
+
+on: 
+  push: 
+    branches: 
+    - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: build a dist
+      run: |
+        npm run build:prod
+        git remote add github "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
+        git pull github ${GITHUB_REF} --ff-only
+        git add ...
+        git commit -m "built dist"
+        git push github HEAD:${GITHUB_REF}
